@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Rooms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("{% static 'hotel4.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: sans-serif;
+            min-height: 100vh;
+            padding-top: 40px;
+        }
+
+        .container {
+            background-color: rgba(255,255,255,0.9);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #003366;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Check Available Rooms</h2>
+    {% if error_message %}
+  <div class="alert alert-danger text-center">
+    {{ error_message }}
+  </div>
+{% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="category">Room Category:</label>
+            <select class="form-control" name="category" id="category" required>
+                <option value="">Select Category</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" class="form-control" required>
+        </div>
+        <button onclick="window.location.href='{% url 'booking' %}'" class="btn btn-primary m-1">Back to Booking</button>
+        <button type="submit" class="btn btn-primary m-1">Check Availability</button>
+    </form>
+
+
+
+    {% if available_rooms %}
+        <h4 class="mt-4 text-success text-center">Available Rooms</h4>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Room Number</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in available_rooms %}
+                    <tr>
+                        <td>{{ room.room_number }}</td>
+                        <td>{{ room.category.name }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif available_rooms is not None %}
+        <p class="mt-4 text-danger text-center">No rooms available for the selected dates.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

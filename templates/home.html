@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-color: #2F4F4F;
+        }
+    .header{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #2F4F4F;
+        border:2px double #b86c55;
+        height: 50px;
+    }
+    .hotel{
+         font-size: 19px;
+        font-weight: bold;
+        color: #CA7C63;
+    }
+    a{
+        text-decoration: none;
+        color: whitesmoke;
+    }
+    .reservation button{
+        background-color:#CA7C63;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+    .reservation button:hover {
+        background-color: #b86c55;
+
+    }
+
+
+    main{
+
+        background-image: url("{% static 'hotel4.jpeg' %}");
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+        background-position:center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+         padding: 0px 80px;
+         position: relative;
+    }
+footer {
+  background-color: #2F4F4F;
+  color: white;
+  padding: 40px 60px 20px 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+}
+
+.footer-section h3 {
+  color: #CA7C63;
+  margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+.footer-section a {
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #CA7C63;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 6px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #555;
+  padding-top: 10px;
+  font-size: 13px;
+  color: #ccc;
+  margin-top: 20px;
+}
+
+.welcome{
+    position: absolute;
+    text-align: left;
+    color: white;
+    padding: 30px 40px;
+
+}
+.login-section{
+    background-color:#2F4F4F;
+    border-radius: 150px ;
+    box-shadow: 0px 4px 15px ;
+    padding: 50px 50px;
+    text-align: center;
+    width: 350px;
+    height: 200p;
+}
+
+.login-section button {
+  background-color: #CA7C63;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.login-section button:hover {
+  background-color: #b86c55;
+}
+
+hr {
+  border: 1px solid #CA7C63;
+}
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="hotel">Hotel Reservation</div>
+        <div><a href="{% url 'home' %}">HOME</a></div>
+        <div><a href="">ABOUT US</a></div>
+        <div><a href="">SERVICES</a></div>
+        <div><a href="">CONTACT</a></div>
+        <div class="reservation">
+            <button onclick="window.location.href='{% url 'booking' %}'"> Make a Reservation</button>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="welcome">
+        <h1>Welcome to Our Website</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dignissimos, facilis velit consectetur accusamus beatae a, sint debitis odio quibusdam consequuntur possimus architecto nesciunt eligendi nisi fugiat? Quisquam, ipsam sint.
+        </p><br><br>
+        <div class="login-section">
+            <h3></h3>
+      <p>If you're a new user:<button onclick="window.location.href='{% url 'register' %}'">Register</button></p>
+            <br>
+      <p>If already registered:<button onclick="window.location.href='{% url 'user_login' %}'">Login</button></p>
+
+      <br><br>
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color:lightgreen;">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>About Us</h3>
+      <p>Welcome to Ocean View Hotel where comfort meets luxury. Enjoy world class services, cozy rooms, and unforgettable seaside experiences.</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Rooms & Suites</a></li>
+        <li><a href="#">Dining</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Address:</strong> Ocean View Hotel, Kerala, India</p>
+      <p><strong>Email:</strong> oceanviewhotel@.gmail.com</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    2025 Hotel Reservation. All rights reserved.
+  </div>
+</footer>
+
+
+</body>
+</html>

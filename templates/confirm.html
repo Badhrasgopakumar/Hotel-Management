@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm</title>
+</head>
+<style>
+     body {
+            background-color: #f0f8ff;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            text-align: center;
+            padding: 40px;
+            background-color: #ffffff;
+        }
+        .card h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .card p {
+            font-size: 18px;
+            color: #333;
+        }
+        .btn-home {
+            margin-top: 20px;
+        }
+    </style>
+<body>
+<div class="card">
+    <h2>Booking Confirmed!</h2>
+    <p>Your room has been successfully booked.</p>
+    <p>Thank you for choosing our hotel!</p>
+    <a href="{% url 'home' %}" class="btn btn-primary btn-home">Back to Home</a>
+</div>
+</body>
+</html>

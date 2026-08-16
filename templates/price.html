@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family:sans-serif;
+            background-image: url("{% static 'hotel4.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .card {
+            display: inline-block;
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 400px;
+        }
+        h2 {
+            color: #28a745;
+            font-size: 24px;
+        }
+        .details {
+            text-align: left;
+            margin-top: 20px;
+            font-size: 17px;
+            color: #333;
+        }
+        .details strong {
+            color: #007bff;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>{{ messages }}</h2>
+
+    <div class="details">
+        {% if reservation.room %}
+        <p><strong>Customer:</strong> {{ reservation.customer_name }}</p>
+        <p><strong>Room Number:</strong> {{ reservation.room.room_number }}</p>
+        <p><strong>Room Category:</strong> {{ reservation.room.category.name }}</p>
+        <p><strong>Check-in:</strong> {{ reservation.start_date }}</p>
+        <p><strong>Check-out:</strong> {{ reservation.end_date }}</p>
+        <p><strong>Total Price:</strong> {{ total_price }}</p>
+        {% endif %}
+
+
+    </div>
+
+    <a href="/booking/" class="btn">Book Another Room</a>
+    <a href="{% url 'home' %}" class="btn">Back to home</a>
+    <a href="{% url 'confirm' %}" class="btn">Confirm</a>
+
+</div>
+
+</body>
+</html>
